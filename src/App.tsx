@@ -1,12 +1,12 @@
 import { useState } from "react";
 
-import { Box } from "@chakra-ui/react";
-import { Flex } from "@chakra-ui/react";
+import { Box, Heading, Flex } from "@chakra-ui/react";
 import NavBar from "./components/NavBar";
 import GameGrid from "./components/GameGrid";
 import GenreList from "./components/GenreList";
 import { Platform } from "./hooks/useGames";
 import { Genre } from "./hooks/useGenres";
+import SortingMenu from "./components/SortingMenu";
 
 export interface GamesQuery {
   genre: Genre | null;
@@ -14,9 +14,8 @@ export interface GamesQuery {
 }
 
 function App() {
-  const [selectedGenre, setGenre] = useState({ id: 14 });
+  const [selectedGenre, setGenre] = useState({ name: "Action", id: 14 });
 
-  console.log(selectedGenre);
   return (
     <>
       <Box w="100%" p={4}>
@@ -27,6 +26,9 @@ function App() {
           <GenreList setGenre={setGenre} />
         </Box>
         <Box w="90%" p={4}>
+          <Heading>{selectedGenre.name}</Heading>
+          <SortingMenu />
+          <br /> <br />
           <GameGrid genreId={selectedGenre.id} />
         </Box>
       </Flex>

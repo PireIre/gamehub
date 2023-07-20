@@ -13,6 +13,7 @@ export interface Game {
 export interface Platform {
   id: number;
   slug: string;
+  name: string;
 }
 interface FetchGamesResponse {
   count: number;
