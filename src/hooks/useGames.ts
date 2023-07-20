@@ -20,7 +20,7 @@ interface FetchGamesResponse {
   results: Game[];
 }
 
-const useGames = (genreId: number) => {
+const useGames = (genreId: number, platformId:number) => {
   const [games, setGames] = useState<Game[]>([]);
   const [error, setError] = useState("");
 
@@ -29,7 +29,7 @@ const useGames = (genreId: number) => {
     const controller = new AbortController();
 
     apiClient
-      .get<FetchGamesResponse>("/games?genres=" + genreId, {signal: controller.signal})
+      .get<FetchGamesResponse>("/games?genres=" + genreId + "&platforms=" + platformId, {signal: controller.signal})
       .then((res) => setGames(res.data.results))
       .catch((err) => {
         if (err instanceof CanceledError) return;
@@ -37,7 +37,7 @@ const useGames = (genreId: number) => {
       });
 
       return () => controller.abort()
-  }, [genreId]);
+  }, [genreId, platformId]);
 
   return {games, error}
 }

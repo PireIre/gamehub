@@ -15,6 +15,9 @@ export interface GamesQuery {
 
 function App() {
   const [selectedGenre, setGenre] = useState({ name: "Action", id: 14 });
+  const [selectedPlatform, setPlatform] = useState({ id: 1 });
+
+  console.log(selectedPlatform);
 
   return (
     <>
@@ -27,9 +30,12 @@ function App() {
         </Box>
         <Box w="90%" p={4}>
           <Heading>{selectedGenre.name}</Heading>
-          <SortingMenu />
+          <SortingMenu setPlatform={setPlatform} />
           <br /> <br />
-          <GameGrid genreId={selectedGenre.id} />
+          <GameGrid
+            genreId={selectedGenre.id}
+            platformId={selectedPlatform.id}
+          />
         </Box>
       </Flex>
     </>

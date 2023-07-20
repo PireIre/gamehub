@@ -12,8 +12,17 @@ import {
 import usePlatforms from "./../hooks/usePlatforms";
 
 import { MdChevronRight } from "react-icons/md";
+import { Platform } from "../hooks/useGames";
 
-const SortingMenu = () => {
+interface Props {
+  setPlatform: (platform: Platform ) => void;
+}
+
+const SortingMenu = ({ setPlatform }: Props) => {
+  const onPlatformSelect = (platformId: Platform) => {
+    setPlatform(platformId);
+  };
+
   const { platforms, error } = usePlatforms();
 
   return (
@@ -23,7 +32,12 @@ const SortingMenu = () => {
       </MenuButton>
       <MenuList>
         {platforms.map((platform) => (
-          <MenuItem key={platform.id}>{platform.name}</MenuItem>
+          <MenuItem
+            onClick={() => onPlatformSelect(platform)}
+            key={platform.id}
+          >
+            {platform.name}
+          </MenuItem>
         ))}
       </MenuList>
     </Menu>

@@ -4,10 +4,11 @@ import useGames from "../hooks/useGames";
 
 interface Props {
   genreId: number
+  platformId: number
 }
 
-const GameGrid = ( {genreId}: Props ) => {
-  const { games, error } = useGames(genreId);
+const GameGrid = ( {genreId, platformId}: Props ) => {
+  const { games, error } = useGames(genreId, platformId);
 
   console.log(games);
 
