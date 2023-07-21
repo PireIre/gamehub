@@ -1,7 +1,9 @@
-export const getCroppedImageUrl = (imageUrl: string) => {
- const target = "media/";
- const index = imageUrl.indexOf(target) + target.length
+import noImage from '../assets/no-image-placeholder.webp';
 
- return "https://media.rawg.io/media/crop/600/400/" + imageUrl.substring(index)
- 
+export const getCroppedImageUrl = (url: string) => {
+  if (!url) return noImage;
+  
+  const target = 'media/';
+  const index = url.indexOf(target) + target.length;
+  return url.slice(0, index) + 'crop/600/400/' + url.slice(index);
 }
