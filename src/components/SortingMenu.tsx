@@ -15,12 +15,12 @@ import { MdChevronRight } from "react-icons/md";
 import { Platform } from "../hooks/useGames";
 
 interface Props {
-  setPlatform: (platform: Platform ) => void;
+  onSelectPlatform: (platform: Platform ) => void;
 }
 
-const SortingMenu = ({ setPlatform }: Props) => {
-  const onPlatformSelect = (platformId: Platform) => {
-    setPlatform(platformId);
+const SortingMenu = ({ onSelectPlatform }: Props) => {
+  const onPlatformSelect = (platform: Platform) => {
+    onSelectPlatform(platform);
   };
 
   const { platforms, error } = usePlatforms();

@@ -11,14 +11,14 @@ import useGenres from "../hooks/useGenres";
 import { Genre } from "./../hooks/useGenres";
 
 interface Props {
-  setGenre: (genre: Genre) => void;
+  onSelectGenre: (genre: Genre) => void;
 }
 
-function GenreList({ setGenre }: Props) {
+function GenreList({ onSelectGenre }: Props) {
   const { genres, error } = useGenres();
 
   const onGengreClick = (genre: Genre) => {
-    setGenre(genre);
+    onSelectGenre(genre);
   };
 
   return (
